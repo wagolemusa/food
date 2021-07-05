@@ -1,0 +1,237 @@
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .cardn {
+     word-wrap: break-word;
+     background-color: yellow;
+    }
+}
+
+body{
+    background: #EAEDED;
+}
+
+
+ #custom-search-form {
+        margin:0;
+        margin-top: 5px;
+        padding: 0;
+    }
+ 
+    #custom-search-form .search-query {
+        padding-right: 3px;
+        padding-right: 4px \9;
+        padding-left: 3px;
+        padding-left: 4px \9;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+ 
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+ 
+    #custom-search-form button {
+        border: 0;
+        background: none;
+        padding: 6px;
+        margin-top: -2px;
+        position: relative;
+        left: -8px;
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        color: #000;
+        background-color: #ffffff;
+    }
+ 
+ .custom-navbar{
+    background-color: #FF8800;
+    color: #fff;
+    /*height: 80px;*/
+}
+
+.category{
+    padding: 1em;
+    background-color: #ffffff;
+}
+.category span{
+    color: red;
+
+}
+.category h1{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  
+/*Remove it if you use image*/
+.logo label
+{
+  color: green;
+  font-family: bold;
+  font-style: italic;
+}
+
+/*Contact me*/
+.contact
+{
+  padding-top: 60px;
+}
+
+
+/********Card*************/
+.image img{
+    height: 200px;
+}
+.view:hover{
+  transform: scale(1.03);
+
+}
+
+
+.allclass{
+    padding: 2em; 
+    background-color: #fff;
+}
+/******** trouser *************8*/
+
+
+.trouser{
+    background-color: #fff;
+    padding: 2em;
+
+}
+@media only screen and (max-width:480px)
+{    
+   .trouser{
+    background-color: #000;
+    padding: 1em;
+
+}
+
+}
+
+
+/******** Services***********/
+
+.service{
+    padding: 3em;
+}
+
+.service h1{
+    padding-left: 3em;
+    color: #000;
+/*    font-size: 40px;
+    font-weight: bold;
+    padding-bottom: -50px;
+*/
+}
+
+.service2{
+    background-color: #fff;
+    padding-top: 8em;
+    padding-bottom: 3em;
+    font-family: AmazonEmber, Helvetica, Arial, sans-serif;
+}
+
+.service2 img{
+    width: 400px;
+   
+
+}
+.service2 p{
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+}
+.logo2 img{
+    width: 53px;
+}
+
+.logo2 h2{
+    font-size: 18px;
+}
+
+
+.service3 {
+    padding-top: 8em;
+    padding-bottom: 5em;
+}
+
+/*..........Cantact Us..................*/
+.map-container-section {
+  overflow:hidden;
+  padding-bottom:56.25%;
+  position:relative;
+  height:0;
+}
+.map-container-section iframe {
+  left:0;
+  top:0;
+  height:100%;
+  width:100%;
+  position:absolute;
+}
+
+.form-header {
+    padding: 1rem;
+    margin-top: -3.13rem;
+    margin-bottom: 3rem;
+    color: #fff;
+    text-align: center;
+    background-color: #ff4444;
+    border-radius: .125rem;
+    -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+}
+
+.btn-floating i {
+    display: inline-block;
+    width: inherit;
+    color: #fff;
+    text-align: center;
+}
+
+.btn-floating i {
+    font-size: 1.25rem;
+    line-height: 47px;
+}
+
+.btn-floating {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    padding: 0;
+    margin: 10px;
+    overflow: hidden;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    width: 47px;
+    height: 47px;
+    background-color: #ff4444;
+}
+
+
+.text1 h4{
+    color: #000;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.cardn {
+ word-wrap: break-word;
+ background-color: #fff;
+}
+
+.show-on-hover:hover > ul.dropdown-menu {
+    display: block;    
+}
+

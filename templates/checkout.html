@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<!--Main layout-->
+<main class="category">
+<div class="container wow fadeIn">
+  <p style="padding-top: 20px;">Please enter a shipping address for this order. Please also indicate whether your billing address is the same as the shipping address entered. When finished, click the "Continue" button.  Or, if you're sending items to more than one address, click the "Add another address" button to enter additional addresses.</p>
+
+  
+    <h3><b>Enter a new shipping address.</b></h3>
+    <h6>When finished, click the "Continue" button.</h6> 
+    <div class="row">
+      <div class="col-md-8 mb-4">
+       <div class="card">
+       <form method="POST" class="card-body">
+        {% csrf_token %}
+       <div class="row">
+      </div>
+    <div class="md-form mb-5">
+  <!-- <input type="text" id="address" class="form-control"> -->
+   {{ form.street_address }}
+   <label for="address" class="">Address</label>
+   </div>
+   <!--address-2-->
+  <div class="md-form mb-5">
+   <!-- <input type="text" id="address-2" class="form-control"> -->
+  {{ form.apartment_address }}
+  <label for="address-2" class="">Address 2 (optional)</label>
+  </div>
+  <div class="md-form mb-5">
+   <!-- <input type="text" id="address-2" class="form-control"> -->
+  {{ form.phone }}
+  <label for="phone" class="">Phone Number</label>
+  </div>
+
+  <hr>
+  <div class="d-block my-3">
+  {% for value, name in form.fields.payment_option.choices %}
+  <div class="custom-control custom-radio">
+ <input id="{{ name }}" name="payment_option" value="{{ value }}" type="radio" class="custom-control-input">
+
+ <label class="custom-control-label" for="{{ name }}">{{ name }}</label>
+  <!-- {{ form.payment_option }} -->
+  </div>
+ {% endfor %}
+<!-- <div class="custom-control custom-radio">
+<input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+<label class="custom-control-label" for="paypal">Paypal</label>
+  </div>
+ <div class="custom-control custom-radio">
+<input id="m_pesa" name="paymentMethod" type="radio" class="custom-control-input" required>
+<label class="custom-control-label" for="m_pesa">M-Pesa</label>
+</div> -->
+ </div>
+<hr class="mb-4">
+  <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+
+</form>
+</div>
+</div>
+<div class="col-md-4 mb-4">
+  {% include "order_snippet.html" %}
+</div>
+<!--Grid column-->
+</div>
+<!--Grid row-->
+</div>
+</div>
+</main>
+  <!--Main layout-->
+
+{% endblock content %}
