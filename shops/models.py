@@ -11,18 +11,13 @@ from django_countries.fields import CountryField
 class Category(models.Model):
 	name = models.CharField(max_length=250)
 	
-
-	class Meta:
-		ordering = ('name',)
-		verbose_name = 'category'
-		verbose_name_plural = 'categories'
+	def __str__(self):
+		return self.name
 
 	def get_category_absolete_url(self):
 		return reverse('shops:list_category', args=[self.id])
 
-	def __str__(self):
-		return self.name
-		
+
 
 CATEGORY_CHOICES = (
 	('S',  'Shirts'),
@@ -47,18 +42,8 @@ class Item(models.Model):
 	title = models.CharField(max_length=100)
 	price = models.FloatField()
 	discount_price = models.FloatField(blank=True, null=True)
-	# category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
-	size = models.CharField(max_length=100)
-	color = models.CharField(max_length=100)
-	type_cloth  = models.CharField(max_length=100)
 	label = models.CharField(choices=LABEL_CHOICES, max_length=1)
-	image = models.ImageField(
-					null=True, 
-					blank=True,
-					width_field="width_field",
-					height_field="height_field")
-	height_field = models.IntegerField(default=0)
-	width_field  = models.IntegerField(default=0)
+	image = models.ImageField()
 	description = models.TextField()
 	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
 
@@ -121,8 +106,6 @@ class Order(models.Model):
 	ordered = models.BooleanField(default=False)
 	billing_address = models.ForeignKey(
 		'BillingAddress', on_delete=models.SET_NULL, blank=True, null=True)
-	payment = models.ForeignKey(
-		'Payment', on_delete=models.SET_NULL, blank=True, null=True)
 	mpesa_pay = models.ForeignKey(
 		'Mpesapay', on_delete=models.SET_NULL, blank=True, null=True)
 	coupon = models.ForeignKey(
@@ -161,20 +144,11 @@ class BillingAddress(models.Model):
 	street_address = models.CharField(max_length=100)
 	apartment_address = models.CharField(max_length=100)
 	phone = models.BigIntegerField(blank=True, null=True)
+	address = models.CharField(max_length=100)
+	description = models.CharField(max_length=200)
 	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
 
-
 	def __str__(self):
-		return self.user.username
-
-class Payment(models.Model):
-	stripe_change_id = models.CharField(max_length=50)
-	user = models.ForeignKey(settings.AUTH_USER_MODEL,
-													on_delete=models.SET_NULL, blank=True, null=True)
-	amount = models.FloatField()
-	timestamp = models.DateTimeField(auto_now_add=True)
-
-	def __str__self(self):
 		return self.user.username
 
 		

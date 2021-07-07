@@ -21,7 +21,9 @@ class CheckoutForm(forms.Form):
 	phone = forms.CharField(required=False, widget=forms.NumberInput(attrs={
 		'class': 'form-control'
 		}))
-	
+	address = forms.CharField(widget=forms.Textarea(attrs={
+		'class': 'form-control'
+		}))
 	# same_shipping_address = forms.BooleanField(required=False)
 	# save_info = forms.BooleanField(required=False	)
 	payment_option = forms.ChoiceField(
@@ -51,22 +53,6 @@ class PostForms(forms.ModelForm):
 	price = forms.CharField(widget=forms.NumberInput(attrs={
 		'class':'form-control'
 		}))
-	discount_price = forms.CharField(widget=forms.NumberInput(attrs={
-		'class':'form-control'
-		}))
-	size = forms.CharField(widget=forms.TextInput(attrs={
-		'class':'form-control'
-		}))
-
-	color = forms.CharField(widget=forms.TextInput(attrs={
-		'class':'form-control'
-		}))
-	type_cloth = forms.CharField(widget=forms.TextInput(attrs={
-		'class':'form-control'
-		}))
-	slug = forms.CharField(widget=forms.TextInput(attrs={
-		'class':'form-control'
-		}))
 	description = forms.CharField(widget=forms.Textarea(attrs={
 		'class': 'form-control'
 		}))
@@ -77,12 +63,7 @@ class PostForms(forms.ModelForm):
 			"category",
 			"title",
 			"price",
-			"discount_price",
-			"size",
-			"color",
-			"type_cloth",
 			"label",
-			"slug",
 			"description",
 			"image",
 	
