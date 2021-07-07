@@ -2,12 +2,14 @@ from django.contrib import admin
 
 # Register your models here.
 from .models import (Item, OrderItem, Order, 
-								Payment,BillingAddress,Mpesapay,Coupon,
+								BillingAddress,Mpesapay,Coupon,
 								Refund, Category, Contact)
 
 class CategoryAdmin(admin.ModelAdmin):
-	list_display = ('name', 'id')
-	prepopulated_fields = {'id':('name',)}
+	list_display = [
+			'name'
+	]
+
 
 def make_refund_accepted(modeladmin, request, queryset):
 	queryset.update(refund_requested=False, refund_granted=True)
@@ -21,14 +23,12 @@ class OrderAdmin(admin.ModelAdmin):
 									'refund_requested',
 									'refund_granted',
 									'billing_address',
-									'payment',
 									'coupon'
 									]
 
 	list_display_links = [
 		'user',
 		'billing_address',
-		'payment',
 		'coupon'
 	]
 
@@ -73,7 +73,6 @@ class OrderItemAdmin(admin.ModelAdmin):
 admin.site.register(Item)
 admin.site.register(OrderItem, OrderItemAdmin)
 admin.site.register(Order, OrderAdmin)
-admin.site.register(Payment)
 admin.site.register(BillingAddress)
 admin.site.register(Mpesapay, MpesapayAdmin)
 admin.site.register(Coupon)

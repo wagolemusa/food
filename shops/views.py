@@ -26,7 +26,7 @@ from .mpesa import Mpesaform
 from .models import (
 				Item, OrderItem,
 				Order, BillingAddress, 
-				Payment, Mpesapay,
+				Mpesapay,
 				Coupon,Refund, Category,
 				Images, Contact
 
@@ -247,16 +247,16 @@ def home(request):
 	querySet = paginator.get_page(page)
 
 	# Trouser 
-	w = Category.objects.get(name = 'Trouser')
-	cat = Item.objects.filter(category=w).order_by('-title')[:6]
+	# w = Category.objects.get(name = 'Trouser')
+	# cat = Item.objects.filter(category=w).order_by('-title')[:6]
 	
 	# # get link Trouser categories
-	get_link = Category.objects.get(name = 'Trouser')
-	link = Item.objects.filter(category=get_link)[:1]
+	# get_link = Category.objects.get(name = 'Trouser')
+	# link = Item.objects.filter(category=get_link)[:1]
 
 	# # Shoes Collections
-	shoes = Category.objects.get(name = 'Shoes')
-	shoes_cat = Item.objects.filter(category=shoes).order_by('-title')[:6]
+	# shoes = Category.objects.get(name = 'Shoes')
+	# shoes_cat = Item.objects.filter(category=shoes).order_by('-title')[:6]
 	
 	# get link shoes categories
 	# get_link_shoes = Category.objects.get(name = 'Shoes')
@@ -274,13 +274,13 @@ def home(request):
 	context = {
 		'object_list': querySet,
 		# 'cat':cat,
-		'shoes_cat':shoes_cat,
+		# 'shoes_cat':shoes_cat,
 		# 'tops_cat': tops_cat,
 		# 'link': link,
 		# # 'linkshoes':linkshoes,
 		# 'tops_cat_link':tops_cat_link,
 		# 'today':today
-		'cat_list':cat_list
+		# 'cat_list':cat_list
 		}
 	return render(request, "home.html", context)
 
@@ -363,8 +363,9 @@ class Mpesa(LoginRequiredMixin, View):
 				    "PartyB": business_short_code,
 				    "PhoneNumber": phone,
 				    "CallBackURL": "https://mainaboutique.herokuapp.com/callbackurl",
-				    "AccountReference": "account",
+				    "AccountReference": "account", 
 				    "TransactionDesc": "account"
+				    # https://mainaboutique.herokuapp.com/callbackurl
 				}
 
 				#POPULAING THE HTTP HEADER
@@ -461,92 +462,6 @@ def callbackurl(request):
 			# Use the service synchronously
 			response = sms.send(message, ['+' + phone ])
 		return HttpResponse("Welcome to mainaboute")
-	
-class PaymentViews(View):
-	def get(self, *args, **kwargs):
-		cat_list = Category.objects.all()
-		order = Order.objects.get(user=request.user, ordered=False)
-		if order.billing_address:
-			context = {
-				'order': order,
-				'DISPLAY_COUPON_FORM':False,
-				'cat_list':cat_list
-			}
-			return render(self.request, "payment.html", context)
-		else:
-			messages.warning(
-				self.request, "You have not added a billing address")
-			return redirect("shops:checkout")
-
-	def post(self, *args, **kwargs):
-		order = Order.objects.get(user=self.request.user, ordered=False)
-		token = self.request.POST.get('stripeToken')
-		amount = int(order.get_total() * 100)
-		try:
-			charge = stripe.Charge.create(
-			  amount=amount, #cents
-			  currency="usd",
-			  source=token, # obtained with Stripe.js
-			  idempotency_key='PtJwqzZri2xry7MQ',
-			)
-			# Create the payement
-			payement = Payment()
-			payment.stipe_change_id = charge['id']
-			payment.user = self.request.user
-			payment.amount = order.get_total()
-			payment.save()
-
-			order_items = order.items.all()
-			order_items.update(ordered=True)
-			for item in order_items:
-				item.save()
-
-			# assign the payment to the Order
-			order.ordered = True
-			order.payment = payment
-			order.ref_code = create_ref_code()
-			order.save()
-
-			messages.success(self.request, "Your order was successfull")
-			return redirect("/")
-
-		except stripe.error.CardError as e:
-			body = e.json_body
-			err = body.get('error', {})
-			# messages.error(self.request, f"{err.get('message')}")
-			message.error(self.request, "%s" %(err.get('message')))
-			return redirect("/")
-
-		except stripe.error.RateLimitError as e:
-		  # Too many requests made to the API too quickly
-		  messages.error(self.request, "Rate limit error")
-		  return redirect("/")
-
-		except stripe.error.InvalidRequestError as e:
-		  # Invalid parameters were supplied to Stripe's API
-		  messages.error(self.request, "Invalid parameters")
-		  return redirect("/")
-
-		except stripe.error.AuthenticationError as e:
-		  # Authentication with Stripe's API failed
-		  # (maybe you changed API keys recently)
-		  messages.error(self.request, "Not authenticated")
-		  return redirect("/")
-
-		except stripe.error.APIConnectionError as e:
-		  # Network communication with Stripe failed
-		  messages.error(self.request, "Network Error")
-		  return redirect("/")
-		except stripe.error.StripeError as e:
-		  # Display a very generic error to the user, and maybe send
-		  # yourself an email
-		  messages.error(self.request, "Something went wrong. you were not charged. Please try again")
-		  return redirect("/")
-		except Exception as e:
-		  # Something else happened, completely unrelated to Stripe
-		  # Send an email to ourselves
-		  messages.error(self.request, "A serious error occurred. We have been notified")
-		  return redirect("/")
 
 
 # Summary Orders
