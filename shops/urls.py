@@ -2,6 +2,7 @@ from django.urls import path
 
 from .views import (
 	products,
+	# ProductView,
 	OrderSummaryView,
 	CheckoutView,
 	# HomeView,

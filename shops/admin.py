@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from .models import (Item, OrderItem, Order, 
 								BillingAddress,Mpesapay,Coupon,
-								Refund, Category, Contact)
+								Refund, Category, Contact, OrderDetails)
 
 class CategoryAdmin(admin.ModelAdmin):
 	list_display = [
@@ -70,12 +70,23 @@ class OrderItemAdmin(admin.ModelAdmin):
 		 "timestamp"
 	]
 
+class DetailedOrderAdmin(admin.ModelAdmin):
+	list_display = [
+		'user',
+		'data',
+		'time',
+		'content',
+		'timestamp',
+	]
+
 admin.site.register(Item)
 admin.site.register(OrderItem, OrderItemAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(BillingAddress)
 admin.site.register(Mpesapay, MpesapayAdmin)
+admin.site.register(OrderDetails)
 admin.site.register(Coupon)
 admin.site.register(Refund)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Contact, ContactAdmin)
+
