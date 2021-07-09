@@ -1,7 +1,7 @@
 from django import forms
 from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget
-from .models import Item, Images, Contact
+from .models import Item, Images, Contact, OrderDetails
 
 PAYMENT_CHOICES = (
 	('S', 'Stripe'),
@@ -63,7 +63,6 @@ class PostForms(forms.ModelForm):
 			"category",
 			"title",
 			"price",
-			"label",
 			"description",
 			"image",
 	
@@ -103,4 +102,24 @@ class CantactForms(forms.ModelForm):
 			"email",
 			"subject",
 			"message",
+		]
+
+class OrderDetailsForm(forms.ModelForm):
+	date = forms.CharField(widget=forms.DateInput(attrs={
+		'class': 'form-control'
+		}))
+	
+	time = forms.CharField(widget=forms.TimeInput(attrs={
+		'class': 'form-control'
+		}))
+	content = forms.CharField(widget=forms.TextInput(attrs={
+		'class': 'form-control'
+		}))
+
+	class Meta:
+		model = OrderDetails
+		fields = [
+			"time",
+			"date",
+			"content"
 		]

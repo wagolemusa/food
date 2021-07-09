@@ -22,11 +22,9 @@
                         Meals
                       </a>
                     </li>
-
-
               <li>
             <!-- Our Special dropdown has class show-on-hover -->
-                <div class="btn-group show-on-hover">
+              <div class="btn-group show-on-hover">
                     <a href="#" style="padding-top: 9px;
                     color: #fff; font-size: 18px; font-weight: bold;"> Dishes</a> 
                   <ul class="dropdown-menu" role="menu">
@@ -37,10 +35,8 @@
                   </li>
                    {% endfor %}
                   </ul>
-
-          
-        </div>
-        </li>
+                </div>
+              </li>
                     <li class="nav-item">
                       <a class="nav-link" href='{% url "shops:contact" %}' style="color: #fff; font-size: 18px; font-weight: bold;">
                         <i class="fa fa-volume-control-phone">
@@ -51,18 +47,6 @@
 
 
                 </ul>
-    <div class="form-inline my-2 my-lg-0">
-        <form method="GET" action="" novalidate="novalidate" class="form-inline d-flex justify-content-center md-form form-sm active-cyan-2 mt-2">
-      <input type="text" name="q" class="form-control mr-sm-2"  placeholder="Search" aria-label="Search" value="{{ request.GET.q }}" style="color: #fff; font-size: 16px; font-weight: bold;">
-
-      <input type="submit" value="search" class="btn btn-outline-success btn-rounded waves-effect"/>
-
-      <!-- <i class="fas fa-search" type="submit" value="search" aria-hidden="true"> -->
-        <!-- <input type="submit" value="search"> -->
-      </i>
-
-    </form>
-              </div>
 
             <ul class="navbar-nav ">
             {% if request.user.is_authenticated %}
@@ -76,11 +60,23 @@
                 Cart <span class="dot text-center" style="background-color: #000; border-radius: 20px; padding-right: 10px; padding-left: 10px;">{{ request.user|cart_item_count }}</span>
               </a>
             </li>
-             <li class="nav-item dropdown form-inline">
-                    <a class="nav-link" href="#">
-                        <a class='nav-link fas fa-sign-out-alt' href="{% url 'account_logout' %}" style="color: #fff; font-size: 18px; font-weight: bold;"> Logout</a>
-                    </a>
-            </li>
+
+                 <div class="btn-group show-on-hover">
+                    <a href="#" style="padding-top: 9px;
+                    color: #fff; font-size: 18px; font-weight: bold;">My Profile</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <ul class="dropdown-menu" role="menu">
+
+                  <li>
+                    <a class="fas fa-ellipsis-v" href='{% url "shops:orders"%}'> Orders</a>
+                  </li>
+                  <li>
+                   <a class='nav-link fas fa-sign-out-alt' href="{% url 'account_logout' %}" style="color: #000; font-size: 16px;"> Logout</a>
+                   </li>
+                   <li>
+                   &nbsp;&nbsp;&nbsp;&nbsp;
+                   </li>
+                  </ul>
+                </div>
 
             {% else %}
 
@@ -100,4 +96,3 @@
               
           </div>
       </nav>
-<br/>

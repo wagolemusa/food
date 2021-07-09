@@ -26,9 +26,9 @@ CATEGORY_CHOICES = (
 )
 
 LABEL_CHOICES = (
-	('P', 'primary'),
-	('S', 'secondary'),
-	('D', 'danger')
+	('P', 'On its Way'),
+	('S', 'Delivered'),
+	('D', 'Canceled')
 )
 
 ADDRESS_CHOICES = (
@@ -42,7 +42,6 @@ class Item(models.Model):
 	title = models.CharField(max_length=100)
 	price = models.FloatField()
 	discount_price = models.FloatField(blank=True, null=True)
-	label = models.CharField(choices=LABEL_CHOICES, max_length=1)
 	image = models.ImageField()
 	description = models.TextField()
 	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
@@ -72,6 +71,8 @@ class OrderItem(models.Model):
 	item = models.ForeignKey(Item, on_delete=models.CASCADE)
 	quantity = models.IntegerField(default=1)
 	ordered = models.BooleanField(default=False)
+	label = models.CharField(choices=LABEL_CHOICES, max_length=1)
+	status = models.CharField(default='pending', max_length=15)
 	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
 
 
@@ -95,6 +96,17 @@ class OrderItem(models.Model):
 			return self.get_discount_item_price()
 		return self.get_total_item_price()
 
+class OrderDetails(models.Model):
+	user = models.ForeignKey(settings.AUTH_USER_MODEL,
+													on_delete=models.CASCADE)
+	date = models.CharField(max_length=100)
+	time = models.CharField(max_length=100)
+	items = models.ManyToManyField(OrderItem)
+	content = models.CharField(max_length=500)
+	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
+
+	def __str__(self):
+		return self.user.username
 
 class Order(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL,
@@ -110,10 +122,13 @@ class Order(models.Model):
 		'Mpesapay', on_delete=models.SET_NULL, blank=True, null=True)
 	coupon = models.ForeignKey(
 		'Coupon', on_delete=models.SET_NULL, blank=True, null=True)
+	order_details = models.ForeignKey(
+		'OrderDetails', on_delete=models.SET_NULL, blank=True, null=True)
 	being_delivered = models.BooleanField(default=False)
 	received_requested = models.BooleanField(default=False)
 	refund_requested = models.BooleanField(default=False)
 	refund_granted = models.BooleanField(default=False)
+	# timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
 
 	'''
 	1. Item added to cart

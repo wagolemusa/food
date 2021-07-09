@@ -20,7 +20,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .forms import (
 						CheckoutForm, CouponForm, 
 						RefundForm, PostForms,
-						ImageForms,CantactForms
+						ImageForms,CantactForms, OrderDetailsForm 
 					)
 from .mpesa import Mpesaform
 from .models import (
@@ -28,7 +28,7 @@ from .models import (
 				Order, BillingAddress, 
 				Mpesapay,
 				Coupon,Refund, Category,
-				Images, Contact
+				Images, Contact, OrderDetails
 
 			)
 import africastalking
@@ -78,8 +78,8 @@ def post_create(request):
 def create_ref_code():
 	return ''.join(random.choices(string.ascii_lowercase + string.digits, k=20))
 
+@login_required
 def products(request, id=None):
-	
 	querySet_list = Item.objects.all()
 	# def get_queryset(self):
 	instance = get_object_or_404(Item, id=id)
@@ -90,6 +90,22 @@ def products(request, id=None):
 	cat_list = Category.objects.all()
 	# Model.objects.get(field_name=some_param)
 
+	if not request.user.is_staff or not request.user.is_superuser:
+		raise Http404
+	form  = OrderDetailsForm(request.POST or None)
+	if form.is_valid():
+		date = form.cleaned_data.get('date')
+		time = form.cleaned_data.get('time')
+		content = form.cleaned_data.get('content')
+		feedbackorder = OrderDetails(
+			user = request.user,
+			date = date,
+			time = time,
+			content = content
+		)
+		feedbackorder.save()
+		messages.warning(request, "Information Sent")
+
 	context = {
 		'items': Item.objects.all(),
 		# "title": instance.title,
@@ -97,6 +113,7 @@ def products(request, id=None):
 		"instance":instance,
 		"cat_list": cat_list	,
 		"querySet_list": querySet_list,
+		"form": form
 		
 	}
 	return render(request, "product.html", context)
@@ -206,6 +223,7 @@ def contact(request):
 		'cat_list':cat_list
 	}
 	return render(request, "contact.html", content)
+
 
 
 
