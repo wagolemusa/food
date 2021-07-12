@@ -11,11 +11,10 @@
 <main>
   <div class="container">
       <div class="row wow fadeIn">
+      <div class="col-md-6 mx-auto mb-6">
        <div class="register" style="float: 56px;">
-       <div class="card">
-       	<div class="card-body">
-
-					<h1>{% trans "Sign Up" %}</h1>
+       <div class="carde">
+       	<div class="card_body">
 
 					<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
@@ -25,11 +24,19 @@
 					  {% if redirect_field_value %}
 					  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
 					  {% endif %}
-					  <button type="submit" class="btn btn-primary">{% trans "Sign Up" %} &raquo;</button>
+					  <button type="submit" class="btn-style-eight5">{% trans "Sign Up" %} &raquo;</button>
 					</form>
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="col-md-6 mx-auto mb-6 signup1">
+	<div class="accout_s">
+			<h3>Create Account with Caramel</h3>
+			<p>To keep connected with us please login <br/>with your personal info</p>
+			<br/>
+		   <a href='{{ login_url }}' class="btn-style-eight pull-right">Sign In</a>
+	</div>
 	</div>
 	</div>
 

@@ -211,6 +211,9 @@ class PaymentView(View):
 def about(request):
 	return render(request, "about.html")
 
+def productshow(request):
+	return render(request, "productshow.html")
+
 def contact(request):
 	cat_list = Category.objects.all()
 	form = CantactForms(request.POST or None)
