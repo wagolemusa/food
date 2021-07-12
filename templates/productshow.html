@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="showpage">
+	<h1>Eiskaffee</h1>
+<div class="container">
+	<div class="row">
+		 <div class="col-md-8 mx-auto mb-8">
+		 		<img src="../static/gg.png" class="img-fluid" style="height: 460px; width: 700px;" />
+		 		<h2><b>Bold ─ Sweet ─ Beautiful.</b> Perfectly balanced with sweet, rich round cocoa flavors and creamy body. Specially crafted for espresso drinks, makes a great drip coffee.</h2>
+		 </div>
+
+		 <div class="col-md-4 mx-auto mb-4">
+		 	<div class="product-single__box">
+		 	<div class="product-single__price">
+		 		<h3>500 <span>Ksh</span></h3>
+		 	</div>
+		 	<div class="box">
+		 	<div class="form-outline mb-4">
+		 	 <label class="form-label" for="form2Example1">
+		 	 Date
+		 	 </label>
+    		<input type="date" id="form2Example1" class="form-control" placeholder="Date" />
+    	</div>
+    	<div class="form-outline mb-4">
+    	 <label class="form-label" for="form2Example1">
+    	 Time</label>
+    		<input type="time" id="form2Example1" class="form-control" placeholder="Time" />
+  			</div>
+  		<div class="form-outline mb-4">
+  		 <label class="form-label" for="form2Example1">Describe Your Order</label>
+  	   	<input type="text" id="form2Example1" class="form-control" placeholder="Content" />
+  	  </div>
+		 	 	<a href='{% url "shops:productshow" %}'shops:prouct1' %}' class="btn-style-eight4 pull-right">Add to cart</a>
+		 	</div>
+		 </div>
+		 </div>
+
+	</div>
+</div>
+</section>
+<hr/>
+<section class="home_product">
+	<div class="show_home">
+		<h2>Other Options</h2>
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			 <div class="col-md-3 mx-auto mb-3">
+			  <img src="../static/c2.png" class="img-fluid" />
+			  <div class="back_home">
+			 		<div class="product-detail">
+			 		<div class="product-rate">500ksh</div>
+				 	<h4>Irish coffee</h4>
+				 	<br>
+				 	<a href='{% url "shops:productshow" %}' class="btn-style-eight2 pull-right">Add to cart</a>
+				 	</div>
+				 </div>
+			</div>
+			 <div class="col-md-3 mx-auto mb-3">
+			 <div class="back_home">
+			<img src="../static/ff.jpg" class="img-fluid" />
+			 		<div class="product-detail">
+			 		<div class="product-rate">120ksh</div>
+				 	<h4>Eiskaffee</h4>
+				 	<br>
+				 	<a href='{% url "shops:productshow" %}' class="btn-style-eight2 pull-right">Add to cart</a>
+				 	</div>
+				 </div>
+			</div>
+			 <div class="col-md-3 mx-auto mb-3">
+			 <div class="back_home">
+			 <img src="../static/c.png" class="img-fluid" />
+			 		<div class="product-detail">
+			 		<div class="product-rate">1000ksh</div>
+				 	<h4>Vienna Coffee</h4>
+				 	<br>
+				 	<a href='{% url "shops:productshow" %}'shops:prouct1' %}' class="btn-style-eight2 pull-right">Add to cart</a>
+				 	</div>
+			 </div>
+			</div>
+			 <div class="col-md-3 mx-auto mb-3">
+			 <div class="back_home">
+			 	<img src="../static/gg.png" class="img-fluid" style="height: 280px;" />
+			 		<div class="product-detail">
+			 		<div class="product-rate">800Ksh</div>
+				 	<h4>House Blend</h4>
+				 	<br>
+				 	<a href='{% url "shops:productshow" %}' class="btn-style-eight2 pull-right">Add to cart</a>
+				 	</div>
+			 </div>
+			</div>
+		</div>
+
+		<div class="option">
+				<a href='{% url "shops:productshow" %}' class="btn-style-eight5 pull-right">Shop All options</a>
+		</div>
+	</div>
+</section>
+{% endblock content %}

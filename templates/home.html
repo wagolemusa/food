@@ -4,266 +4,70 @@
 
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="../static/nb.jpg"
-        alt="First slide">
+      <div class="slider">
+        <div class="container-fluid">
+        <div class="row back">
+          <div class="col-md-6">
+          <div class="back_2">
+            <h2>Caramel</h2>
+            <h3> <span><i class="fas fa-mug-hot"></i></span> 
+            &nbsp;Coffee House</h3>
+            <br/>
+            <a href='#' class="btn-style-eight pull-right">shop coffee </a>
+            <a href='#' class="btn-style-eight2 pull-right">subscribe Now</a>
+          </div>
+          </div>
+          <div class="col-md-6">
+          </div>
+        </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+
+<section class="product_coffe">
+<h2>What's Your Favorite?</h2>
+  <!-- <div class="row wow fadeIn">  
+    {% for item in object_list %}
+  <div class="col-lg-2 col-md-6 mb-4">
+  <div class="card">
+   <div class="view overlay">
+    <div class="image">
+    <img src="{{ item.image.url }}" class="card-img-top" alt=""> 
+      <a href="{{ item.get_absolete_url }}">
+    
+      <div class="mask rgba-white-slight"></div>
+    </a>
     </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="../static/oo.jpg"
-        alt="Second slide">
     </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="../static/pr.jpg"
-        alt="Third slide">
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
+    <div class="card-body text-center">
+    <a href="{{ item.category.get_category_absolete_url }}" class="grey-text">
+    </a>
+  <h5>
+  <strong>
+    <a href="{{ item.get_absolete_url }}" class="dark-grey-text" style="font-size: 16px;">{{ item.title }}</a> &nbsp;&nbsp;&nbsp;
 
+    <a href="{{ item.category.get_category_absolete_url }}" class="badge badge-pill {{ item.get_label_display }}-color">{{ item.category }}</a>
+  </strong></h5>
+   <h5 class="font-weight-bold blue-text" style="font-size: 18px; font-weight: bold;">
+     
+    {% if item.discount_price %}
+    {{ item.discount_price }}
+    {% else %}
 
-<!-- All Products -->
-<div class="container-fluid">
-<div class="allclass">
-{% for links in link %}
-<h5><a href="#" style="color: #4B515D !important; font-weight: bold; 
-font-size: 18px;">
-<span style="color: #FF8800;">All New Ralated Products</span>| <span>See all -->{{ cat.price }}</span></a></span></h5>
-{% endfor %}
-
-<br/>
-  <div class="row wow fadeIn"> 
-  <!--Fourth column-->
-  {% for item in object_list %}
-<div class="col-lg-2 col-md-6 mb-4">
-<div class="card">
- <div class="view overlay">
-  <div class="image">
-  <img src="{{ item.image.url }}" class="card-img-top" alt=""> 
-    <a href="{{ item.get_absolete_url }}">
-  
-    <div class="mask rgba-white-slight"></div>
-  </a>
+      Ksh {{ item.price }}
+    {% endif %} 
+  </h5>
   </div>
   </div>
-  <div class="card-body text-center">
-  <!--Category & Title-->
-  <a href="{{ item.category.get_category_absolete_url }}" class="grey-text">
-  </a>
-<h5>
-<strong>
-  <a href="{{ item.get_absolete_url }}" class="dark-grey-text" style="font-size: 16px;">{{ item.title }}</a> &nbsp;&nbsp;&nbsp;
-
-  <a href="{{ item.category.get_category_absolete_url }}" class="badge badge-pill {{ item.get_label_display }}-color">{{ item.category }}</a>
-</strong></h5>
- <h5 class="font-weight-bold blue-text" style="font-size: 18px; font-weight: bold;">
-   
-  {% if item.discount_price %}
-  {{ item.discount_price }}
-  {% else %}
-
-    Ksh {{ item.price }}
-  {% endif %} 
-</h5>
-</div>
-<!--Card content-->
-
   </div>
-  <!--Card-->
-</div>
-<!--Fourth column-->
-{% endfor %}
-</div>
-<!--Grid row-->
-
+  {% endfor %}
+  </div>
+  </div> -->
 </section>
-<!--Section: Products v.3-->
-    </div>
-</div>
-
-
-
-<br/>
-
-<!-- -Trouser collections -->
-<div class="container-fluid">
-<div class="trouser">
-
-<div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
-
-  <div class="row">
-<div class="col-md-3">
-{% for links in link %}
-<h5><a href="{{ links.category.get_category_absolete_url }}" style="color: #4B515D !important; font-weight: bold; 
-font-size: 18px;">
-Best <span style="color: #FF8800;">Trousers</span>| <span>See all -->{{ cat.price }}</span></a></span></h5>
-{% endfor %}
-</div>
-
-  <!--Indicators-->
-  <ol class="carousel-indicators">
-    <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
-    <li data-target="#multi-item-example" data-slide-to="1"></li>
-    <li data-target="#multi-item-example" data-slide-to="2"></li>
-  </ol>
-  <!--/.Indicators-->
-
-  <!--Slides-->
-  <div class="carousel-inner" role="listbox">
-
-    <!--First slide-->
-    <div class="carousel-item active">
-  <div class="row">
-    {% for category in cat %}
-
-      <div class="col-md-2">
-        <div class="card mb-2">
-       <div class="view overlay">
-          <div class="image">
-          <img src="{{ category.image.url }}" class="card-img-top" alt=""> 
-            <a href="{{ category.get_absolete_url }}">
-          
-            <div class="mask rgba-white-slight"></div>
-          </a>
-          </div>
-          <h6 style="padding-left: 10px; padding-top: 5px; font-weight: bold;">Ksh {{ category.price }}
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-
-    </div>
-    <!--/.Third slide-->
-  </div>
-  <!--/.Slides-->
-
-</div>
-</div>
-</div>
-</div></div>
-
-<br/>
-
-<!-- Shoes Collections -->
-<div class="container-fluid">
-<div class="trouser">
-
-<div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
-
-  <div class="row">
-<div class="col-md-3">
-{% for links in linkshoes %}
-<h5><a href="{{ links.category.get_category_absolete_url }}" style="color: #444 !important; font-weight: bold; 
-font-size: 18px;">
-Best <span style="color: #FF8800;">Shoes</span> | <span>See all --></span></a></span></h5>
-{% endfor %}
-</div>
-
-  <!--Indicators-->
-  <ol class="carousel-indicators">
-    <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
-    <li data-target="#multi-item-example" data-slide-to="1"></li>
-    <li data-target="#multi-item-example" data-slide-to="2"></li>
-  </ol>
-  <!--/.Indicators-->
-
-  <!--Slides-->
-  <div class="carousel-inner" role="listbox">
-
-    <!--First slide-->
-    <div class="carousel-item active">
-  <div class="row">
-    {% for category in shoes_cat %}
-
-      <div class="col-md-2">
-        <div class="card mb-2">
-       <div class="view overlay">
-          <div class="image">
-          <img src="{{ category.image.url }}" class="card-img-top" alt=""> 
-            <a href="{{ category.get_absolete_url }}">
-          
-            <div class="mask rgba-white-slight"></div>
-          </a>
-          </div>
-          <h6 style="padding-left: 10px; padding-top: 5px; font-weight: bold;">Ksh {{ category.price }}
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-
-    </div>
-    <!--/.Third slide-->
-  </div>
-  <!--/.Slides-->
-
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<br/>
-
-<!--Tops Collections-->
-<div class="container-fluid">
-<div class="trouser">
-
-<div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
-
-  <div class="row">
-<div class="col-md-3">
-{% for tops in tops_cat_link %}
-<h5><a href="{{ tops.category.get_category_absolete_url }}" style="color: #444 !important; font-weight: bold; 
-font-size: 18px;">
-Best <span style="color: #FF8800;">Tops</span> | <span>See all --></span></a></span></h5>
-{% endfor %}
-</div>
-  <!--Indicators-->
-  <ol class="carousel-indicators">
-    <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
-    <li data-target="#multi-item-example" data-slide-to="1"></li>
-    <li data-target="#multi-item-example" data-slide-to="2"></li>
-  </ol>
-  <!--/.Indicators-->
-
-  <!--Slides-->
-  <div class="carousel-inner" role="listbox">
-
-    <!--First slide-->
-    <div class="carousel-item active">
-  <div class="row">
-    {% for category in tops_cat %}
-
-      <div class="col-md-2">
-        <div class="card mb-2">
-       <div class="view overlay">
-          <div class="image">
-          <img src="{{ category.image.url }}" class="card-img-top" alt=""> 
-            <a href="{{ category.get_absolete_url }}">
-          
-            <div class="mask rgba-white-slight"></div>
-          </a>
-          </div>
-          <h6 style="padding-left: 10px; padding-top: 5px; font-weight: bold;">Ksh {{ category.price }}
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-
-    </div>
-    <!--/.Third slide-->
-  </div>
-  <!--/.Slides-->
-
-</div>
-</div>
-</div>
-</div>
-</div>
-{% endblock content %}
+  {% include "home_product.html" %}
+  
+  </section>
+  {% endblock content %}
