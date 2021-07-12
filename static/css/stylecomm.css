@@ -1,12 +1,4 @@
 
-
-@media (min-width: 768px) and (max-width: 1024px) {
-    .cardn {
-     word-wrap: break-word;
-     background-color: yellow;
-    }
-}
-
 body{
     background: #ffffff;
 }
@@ -202,8 +194,6 @@ body{
     font-weight: bold;
 }
 
-@media (min-width: 768px) {
-  
 /*Remove it if you use image*/
 .logo label
 {
@@ -239,15 +229,6 @@ body{
 .trouser{
     background-color: #fff;
     padding: 2em;
-
-}
-@media only screen and (max-width:480px)
-{    
-   .trouser{
-    background-color: #000;
-    padding: 1em;
-
-}
 
 }
 
@@ -560,6 +541,23 @@ body{
 .page-footer{
         background-color: #0F2138;
 }
+
+@media only screen and (max-width:480px)
+{    
+   .trouser{
+    background-color: #000;
+    padding: 1em;
+
+}
+
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .cardn {
+     word-wrap: break-word;
+     background-color: yellow;
+    }
+}
+
 @media (min-width: 768px) and (max-width: 1024px){
     .signup1{
         /*display: flex;*/
@@ -600,5 +598,55 @@ body{
         font-size: 20px;
         font-weight: 500;
     }    
+    
+}
+@media only screen and (max-width: 760px) {
 
+    .coffe_back h2{
+        color: #ffffff;
+        font-size: 26px;
+        /*font-weight: 600;*/
+        padding-top: 20px;
+
+    }
+    .coffe_back img{
+        width: 280px;
+
+    }
+    .coffe_back p{
+        font-size: 16px;
+    }
+    .styleback {
+        text-align: center;
+    }
+
+    .coffe_back {
+        height: 620px;
+    }
+
+    .back1 {
+        height: 620px;
+    }
+    .product_coffe h2{
+        font-size: 26px;
+    }
+
+
+}
+
+@media only screen and (max-width: 760px) {
+    .showpage img{
+        width: 500px;
+        height: 290px;
+    }
+    .showpage h2{
+        font-size: 18px;
+        padding-bottom: 10px;
+    }
+    .show_home h2{
+        font-size: 35px;
+    }
+    .accout_s h3{
+        font-size: 40px;
+    }
 }

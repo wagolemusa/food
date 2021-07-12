@@ -71,7 +71,6 @@ class OrderItem(models.Model):
 	item = models.ForeignKey(Item, on_delete=models.CASCADE)
 	quantity = models.IntegerField(default=1)
 	ordered = models.BooleanField(default=False)
-	label = models.CharField(choices=LABEL_CHOICES, max_length=1)
 	status = models.CharField(default='pending', max_length=15)
 	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
 
