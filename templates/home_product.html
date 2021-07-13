@@ -1,53 +1,30 @@
 <section class="home_product">
 	<div class="container-fluid">
 		<div class="row">
+		  {% for item in object_list %}
 			 <div class="col-md-3 mx-auto mb-3">
-			  <img src="../static/c2.png" class="img-fluid" />
+			   <div class="view overlay">
+				    <div class="image">
+				    <img src="{{ item.image.url }}" class="card-img-top" alt=""> 
+				      <a href="{{ item.get_absolete_url }}">
+    
+      			<div class="mask rgba-white-slight"></div>
+    			</a>
+    </div>
+    </div>
 			  <div class="back_home">
 			 		<div class="product-detail">
-			 		<div class="product-rate">500ksh</div>
-				 	<h4>Irish coffee</h4>
+			 		<div class="product-rate">{{ item.price }}ksh</div>
+				 	<h4>{{ item.title }}</h4>
 				 	<br>
-				 	<a href='{% url "shops:productshow" %}' class="btn-style-eight2 pull-right">Add to cart</a>
+				 	<a href='{{ item.get_absolete_url }}' class="btn-style-eight2 pull-right">Add to cart</a>
 				 	</div>
 				 </div>
 			</div>
-			 <div class="col-md-3 mx-auto mb-3">
-			 <div class="back_home">
-			<img src="../static/ff.jpg" class="img-fluid" />
-			 		<div class="product-detail">
-			 		<div class="product-rate">120ksh</div>
-				 	<h4>Eiskaffee</h4>
-				 	<br>
-				 	<a href='{% url "shops:productshow" %}' class="btn-style-eight2 pull-right">Add to cart</a>
-				 	</div>
-				 </div>
-			</div>
-			 <div class="col-md-3 mx-auto mb-3">
-			 <div class="back_home">
-			 <img src="../static/c.png" class="img-fluid" />
-			 		<div class="product-detail">
-			 		<div class="product-rate">1000ksh</div>
-				 	<h4>Vienna Coffee</h4>
-				 	<br>
-				 	<a href='{% url "shops:productshow" %}'shops:prouct1' %}' class="btn-style-eight2 pull-right">Add to cart</a>
-				 	</div>
-			 </div>
-			</div>
-			 <div class="col-md-3 mx-auto mb-3">
-			 <div class="back_home">
-			 	<img src="../static/gg.png" class="img-fluid" style="height: 280px;" />
-			 		<div class="product-detail">
-			 		<div class="product-rate">800Ksh</div>
-				 	<h4>House Blend</h4>
-				 	<br>
-				 	<a href='{% url "shops:productshow" %}' class="btn-style-eight2 pull-right">Add to cart</a>
-				 	</div>
-			 </div>
-			</div>
+		{% endfor %}
 		</div>
 			<div class="option">
-				<a href='{% url "shops:productshow" %}' class="btn-style-eight5 pull-right">View All ->></a>
+				<a href='{% url "shops:new" %}' class="btn-style-eight5 pull-right">View All ->></a>
 		</div>
 	</div>
 </section>
