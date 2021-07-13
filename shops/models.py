@@ -70,8 +70,8 @@ class OrderItem(models.Model):
 													on_delete=models.CASCADE)
 	item = models.ForeignKey(Item, on_delete=models.CASCADE)
 	quantity = models.IntegerField(default=1)
-	ordered = models.BooleanField(default=False)
 	status = models.CharField(default='pending', max_length=15)
+	ordered = models.BooleanField(default=False)
 	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
 
 

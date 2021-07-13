@@ -3,39 +3,46 @@
 {% block content %}
 
 <section class="showpage">
-	<h1>Eiskaffee</h1>
+	<h1>{{ instance.title }}</h1>
 <div class="container">
 	<div class="row">
 		 <div class="col-md-8 mx-auto mb-8">
-		 		<img src="../static/gg.png" class="img-fluid" 
-		 		alt="..."/>
-		 		<h2><b>Bold ─ Sweet ─ Beautiful.</b> Perfectly balanced with sweet, rich round cocoa flavors and creamy body. Specially crafted for espresso drinks, makes a great drip coffee.</h2>
+		 		<img src="{{ instance.image.url }}" class="card-img-top">
+		 		
 		 </div>
 
 		 <div class="col-md-4 mx-auto mb-4">
+		 	<form method="POST" class="card-body">
+					{% csrf_token %} 
 		 	<div class="product-single__box">
 		 	<div class="product-single__price">
-		 		<h3>500 <span>Ksh</span></h3>
+		 		<h3>{{instance.price }} <span>Ksh</span></h3>
 		 	</div>
 		 	<div class="box">
 		 	<div class="form-outline mb-4">
 		 	 <label class="form-label" for="form2Example1">
 		 	 Date
 		 	 </label>
-    		<input type="date" id="form2Example1" class="form-control" placeholder="Date" />
+    		<!-- <input type="date" id="form2Example1" class="form-control" placeholder="Date" /> -->
+    		{{ form.date}}
     	</div>
     	<div class="form-outline mb-4">
     	 <label class="form-label" for="form2Example1">
     	 Time</label>
-    		<input type="time" id="form2Example1" class="form-control" placeholder="Time" />
-  			</div>
+    <!-- 		<input type="time" id="form2Example1" class="form-control" placeholder="Time" /> -->
+    {{ form.time }}
+  	</div>
   		<div class="form-outline mb-4">
   		 <label class="form-label" for="form2Example1">Describe Your Order</label>
-  	   	<input type="text" id="form2Example1" class="form-control" placeholder="Content" />
+  	  <!--  	<input type="text" id="form2Example1" class="form-control" placeholder="Content" /> -->
+  	  {{ form.content }}
   	  </div>
 		 	 	<a href='{% url "shops:productshow" %}'shops:prouct1' %}' class="btn-style-eight4 pull-right">Add to cart</a>
+		 	 	
+		 	 <button class="btn btn-light-blue" type="submit">Send Message</button>
 		 	</div>
 		 </div>
+		 	</form>
 		 </div>
 
 	</div>
