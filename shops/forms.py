@@ -105,7 +105,7 @@ class CantactForms(forms.ModelForm):
 		]
 
 class OrderDetailsForm(forms.ModelForm):
-	date = forms.CharField(widget=forms.DateInput(attrs={
+	dates = forms.CharField(widget=forms.DateInput(attrs={
 		'class': 'form-control'
 		}))
 	
@@ -119,7 +119,7 @@ class OrderDetailsForm(forms.ModelForm):
 	class Meta:
 		model = OrderDetails
 		fields = [
+			"dates",
 			"time",
-			"date",
 			"content"
 		]

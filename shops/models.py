@@ -68,7 +68,7 @@ class Item(models.Model):
 class OrderItem(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL,
 													on_delete=models.CASCADE)
-	item = models.ForeignKey(Item, on_delete=models.CASCADE)
+	item = models.ForeignKey(Item, on_delete=models.CASCADE, blank=True)
 	quantity = models.IntegerField(default=1)
 	status = models.CharField(default='pending', max_length=15)
 	ordered = models.BooleanField(default=False)
@@ -98,10 +98,10 @@ class OrderItem(models.Model):
 class OrderDetails(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL,
 													on_delete=models.CASCADE)
-	date = models.CharField(max_length=100)
-	time = models.CharField(max_length=100)
-	items = models.ManyToManyField(OrderItem)
-	content = models.CharField(max_length=500)
+	dates = models.CharField(blank=True, max_length=100)
+	time = models.CharField(blank=True, max_length=100)
+	items = models.ManyToManyField(OrderItem, blank=True)
+	content = models.CharField(blank=True, max_length=500)
 	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
 
 	def __str__(self):

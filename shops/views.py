@@ -94,12 +94,12 @@ def products(request, id=None):
 		raise Http404
 	form  = OrderDetailsForm(request.POST or None)
 	if form.is_valid():
-		date = form.cleaned_data.get('date')
+		dates = form.cleaned_data.get('dates')
 		time = form.cleaned_data.get('time')
 		content = form.cleaned_data.get('content')
 		feedbackorder = OrderDetails(
 			user = request.user,
-			date = date,
+			dates = dates,
 			time = time,
 			content = content
 		)
