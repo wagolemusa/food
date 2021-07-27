@@ -227,9 +227,6 @@ def contact(request):
 	}
 	return render(request, "contact.html", content)
 
-
-
-
 def services(request):
 	object_list = Item.objects.all().order_by("-timestamp")
 	query = request.GET.get("q")
