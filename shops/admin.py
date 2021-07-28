@@ -67,6 +67,7 @@ class OrderItemAdmin(admin.ModelAdmin):
 		 "user",
 		 "item",
 		 "quantity",
+		 "status",
 		 "timestamp"
 	]
 
