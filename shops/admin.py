@@ -18,25 +18,20 @@ make_refund_accepted.short_description = 'Update order to refund granted'
 class OrderAdmin(admin.ModelAdmin):
 	list_display = ['user', 
 									'ordered',
-									'being_delivered',
-									'received_requested',
-									'refund_requested',
-									'refund_granted',
-									'billing_address',
+									'is_paid',
+									'is_shipped',
 									'coupon'
 									]
 
-	list_display_links = [
-		'user',
-		'billing_address',
-		'coupon'
-	]
+	# list_display_links = [
+	# 	'user',
+	# 	'billing_address',
+	# 	'coupon'
+	# ]
 
 	list_filter = [ 'ordered',
-									'being_delivered',
-									'received_requested',
-									'refund_requested',
-									'refund_granted'
+									'is_paid',
+									'is_shipped'
 								]
 	search_fields = [
 		'user__username',
@@ -67,7 +62,6 @@ class OrderItemAdmin(admin.ModelAdmin):
 		 "user",
 		 "item",
 		 "quantity",
-		 "status",
 		 "timestamp"
 	]
 
