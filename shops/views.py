@@ -90,22 +90,6 @@ def products(request, id=None):
 	cat_list = Category.objects.all()
 	# Model.objects.get(field_name=some_param)
 
-	if not request.user.is_staff or not request.user.is_superuser:
-		raise Http404
-	form  = OrderDetailsForm(request.POST or None)
-	if form.is_valid():
-		dates = form.cleaned_data.get('dates')
-		time = form.cleaned_data.get('time')
-		content = form.cleaned_data.get('content')
-		feedbackorder = OrderDetails(
-			user = request.user,
-			dates = dates,
-			time = time,
-			content = content
-		)
-		feedbackorder.save()
-		messages.warning(request, "Information Sent")
-
 	context = {
 		'items': Item.objects.all(),
 		# "title": instance.title,
@@ -113,7 +97,7 @@ def products(request, id=None):
 		"instance":instance,
 		"cat_list": cat_list	,
 		"querySet_list": querySet_list,
-		"form": form
+		
 		
 	}
 	return render(request, "product.html", context)
@@ -172,9 +156,9 @@ class CheckoutView(View):
 		try:
 			order = Order.objects.get(user=self.request.user, ordered=False)
 			if form.is_valid():
-				street_address = form.cleaned_data.get('street_address')
-				apartment_address = form.cleaned_data.get('apartment_address')
+				address = form.cleaned_data.get('address')
 				phone = form.cleaned_data.get('phone')
+				description = form.cleaned_data.get('description')
 				
 				# TODO: Functionality for these field
 				# same_shipping_address = form.cleaned_data.get(
@@ -183,9 +167,9 @@ class CheckoutView(View):
 				payment_option = form.cleaned_data.get('payment_option')
 				billing_address = BillingAddress(
 					user=self.request.user,
-					street_address=street_address,
-					apartment_address=apartment_address,
-					phone=phone
+					address=address,
+					phone=phone,
+					description=description
 				)
 				billing_address.save()
 				order.billing_address = billing_address
@@ -486,18 +470,42 @@ def callbackurl(request):
 @method_decorator(login_required, name='dispatch')
 # @login_required
 class OrderSummaryView(LoginRequiredMixin, View):
-	def get(self, *args, **kwargs):
+
+
+	def post(self, request, *args, **kwargs):
+		dates = request.POST.get('dates')
+		time = request.POST.get('time')
+		content = request.POST.get('content')
+
+		feedbackorder = OrderDetails.objects.create(
+			user = request.user,
+			dates = dates,
+			time = time,
+			content = content
+		)
+		feedbackorder.save()
+
+		# context = {
+		# 	'form': form
+		# }
+		messages.warning(request, "Information Sent")
+		return redirect("shops:checkout")
+
+	def get(self, request, *args, **kwargs):
 		cat_list = Category.objects.all()
 		try:
 			order = Order.objects.get(user=self.request.user, ordered=False)
 			context = {
 				'object': order,
-				'cat_list':cat_list
+				'cat_list':cat_list,
+				
 			}
 			return render(self.request, 'order_summary.html', context)
 		except ObjectDoesNotExist:
 			messages.error(self.request, "You do not have an active order")
 			return redirect("/")
+
+
 
 class ItemDetailView(DetailView):
 	model = Item

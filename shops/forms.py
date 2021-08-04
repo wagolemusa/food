@@ -11,17 +11,14 @@ PAYMENT_CHOICES = (
 )
 
 class CheckoutForm(forms.Form):
-	street_address = forms.CharField(widget=forms.TextInput(attrs={
-		'class': 'form-control'
-		}))
-	apartment_address = forms.CharField(required=False, widget=forms.TextInput(attrs={
+	address = forms.CharField(required=False, widget=forms.TextInput(attrs={
 		'class': 'form-control'
 		}))
 
 	phone = forms.CharField(required=False, widget=forms.NumberInput(attrs={
 		'class': 'form-control'
 		}))
-	address = forms.CharField(widget=forms.Textarea(attrs={
+	description = forms.CharField(widget=forms.Textarea(attrs={
 		'class': 'form-control'
 		}))
 	# same_shipping_address = forms.BooleanField(required=False)

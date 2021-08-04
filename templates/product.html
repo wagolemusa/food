@@ -3,47 +3,20 @@
 {% block content %}
 
 <section class="showpage">
-  <h1>{{ instance.title }}</h1>
 <div class="container">
   <div class="row">
      <div class="col-md-8 mx-auto mb-8">
      <div class="showproducts">
         <img src="{{ instance.image.url }}" class="img-fluid" alt="...">
-        <p class="text-muted">{{ instance.description}}</p>
+        
      </div>
     </div>
 
      <div class="col-md-4 mx-auto mb-4">
-      <form method="POST" class="card-body">
-          {% csrf_token %} 
-      <div class="product-single__box">
-      <div class="product-single__price">
-        <h3>{{instance.price }} <span>Ksh</span></h3>
-      </div>
-      <div class="box">
-      <div class="form-outline mb-4">
-       <label class="form-label" for="form2Example1">
-       Date
-       </label>
-        <!-- <input type="date" id="form2Example1" class="form-control" placeholder="Date" /> -->
-        {{ form.dates}}
-      </div>
-      <div class="form-outline mb-4">
-       <label class="form-label" for="form2Example1">
-       Time</label>
-    <!--    <input type="time" id="form2Example1" class="form-control" placeholder="Time" /> -->
-    {{ form.time }}
-    </div>
-      <div class="form-outline mb-4">
-       <label class="form-label" for="form2Example1">Describe Your Order</label>
-      <!--    <input type="text" id="form2Example1" class="form-control" placeholder="Content" /> -->
-      {{ form.content }}
-      </div>
-      <button class="btn-style-eight8" type="submit">
-        Send Request</button>
-        <hr/>
-       </form>
-        <a href="{{ instance.get_add_to_cart_url }}" class="btn-style-eight4 pull-right">Add to cart</a>
+        <h1>{{ instance.title }}</h1>
+        <h2 class="mt-4">{{ instance.price }} Ksh</h2>
+        <p class="text-muted mt-5">{{ instance.description}}</p>
+        <a href="{{ instance.get_add_to_cart_url }}" class="btn-style-eight4 pull-right mt-5">Add to cart</a>
       </div>
      </div>
        

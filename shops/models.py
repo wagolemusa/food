@@ -70,10 +70,8 @@ class OrderItem(models.Model):
 													on_delete=models.CASCADE)
 	item = models.ForeignKey(Item, on_delete=models.CASCADE, blank=True)
 	quantity = models.IntegerField(default=1)
-	status = models.CharField(default='pending', max_length=15)
 	ordered = models.BooleanField(default=False)
 	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
-
 
 	def __str__(self):
 		return "%s %s" %(self.quantity, self.item.title)
@@ -100,7 +98,7 @@ class OrderDetails(models.Model):
 													on_delete=models.CASCADE)
 	dates = models.CharField(blank=True, max_length=100)
 	time = models.CharField(blank=True, max_length=100)
-	items = models.ManyToManyField(OrderItem, blank=True)
+	items = models.ManyToManyField(OrderItem)
 	content = models.CharField(blank=True, max_length=500)
 	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
 
@@ -123,11 +121,10 @@ class Order(models.Model):
 		'Coupon', on_delete=models.SET_NULL, blank=True, null=True)
 	order_details = models.ForeignKey(
 		'OrderDetails', on_delete=models.SET_NULL, blank=True, null=True)
-	being_delivered = models.BooleanField(default=False)
-	received_requested = models.BooleanField(default=False)
-	refund_requested = models.BooleanField(default=False)
-	refund_granted = models.BooleanField(default=False)
-	# timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
+	is_paid = models.BooleanField(default=False)
+	is_shipped = models.BooleanField(default=False)
+	# created_on = models.DateTimeField(auto_now_add=True)
+	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
 
 	'''
 	1. Item added to cart
@@ -155,10 +152,8 @@ class Order(models.Model):
 class BillingAddress(models.Model):
 	user = models.ForeignKey(settings.AUTH_USER_MODEL,
 														on_delete=models.CASCADE)
-	street_address = models.CharField(max_length=100)
-	apartment_address = models.CharField(max_length=100)
-	phone = models.BigIntegerField(blank=True, null=True)
 	address = models.CharField(max_length=100)
+	phone = models.BigIntegerField(blank=True, null=True)
 	description = models.CharField(max_length=200)
 	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
 
@@ -171,12 +166,11 @@ class Mpesapay(models.Model):
 													on_delete=models.SET_NULL, blank=True, null=True)
 	amount = models.FloatField()
 	phone = models.BigIntegerField(blank=True, null=True)
-	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
 	cash = models.CharField(default='notpayed', max_length=15)
-
+	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
+	
 	def __str__(self):
 		return self.user.username
-
 
 class Coupon(models.Model):
 	code = models.CharField(max_length=15)
